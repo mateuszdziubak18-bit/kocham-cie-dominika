@@ -716,7 +716,27 @@ body::after{
 
     color:#ffc6d9;
 }
+.random-message {
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
 
+    min-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.10);
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+}
 /* =========================
    SEKRET
 ========================= */
@@ -1042,9 +1062,9 @@ footer{
 
         <br>
 
-        Moja
+        Moje
         <span class="glow-word">
-            Doma
+            Kochanie
         </span>
         ❤️
 
@@ -1128,13 +1148,11 @@ footer{
 
         </button>
 
-        <button
-            class="btn"
-            onclick="randomMessage()">
-
-            💌 WIADOMOŚĆ DLA DOMY
-
-        </button>
+        <button type="button" onclick="showRandomMessage()">
+         💌 WIADOMOŚĆ DLA DOMY...
+       </button>
+        
+        
 
         <button
             class="btn"
@@ -1212,7 +1230,7 @@ footer{
             </h3>
 
             <p>
-                Doma, Twój uśmiech
+                Kochanie, Twój uśmiech
                 potrafi poprawić mi humor
                 w sekundę.
             </p>
@@ -1288,7 +1306,7 @@ footer{
 
             <p>
                 Każda chwila z Tobą
-                jest dla mnie ważna.
+                jest dla mnie najważniejsza.
             </p>
 
         </div>
@@ -1333,7 +1351,7 @@ footer{
         margin-bottom:25px">
 
         Każda sekunda z Domcią
-        jest ważna. ❤️
+        jest najważniejsza. ❤️
 
     </p>
 
@@ -1418,7 +1436,7 @@ footer{
 <section class="section">
 
     <h2 class="section-title">
-        💌 Małe wiadomości dla <span>Doma</span>
+        💌 Małe wiadomości dla <span>Domii</span>
     </h2>
 
     <div
@@ -1426,7 +1444,7 @@ footer{
         id="messageBox">
 
         Kliknij przycisk na górze,
-        Księżniczko 👑❤️
+        kochanie 👑❤️
 
     </div>
 
@@ -1440,7 +1458,7 @@ footer{
 <section class="section">
 
     <h2 class="section-title">
-        📸 Wspomnienia <span>Domci</span> ❤️
+        📸 NASZE <span>wspomnienia</span> ❤️
     </h2>
 
     <div class="gallery">
@@ -1597,7 +1615,7 @@ footer{
     </p>
 
     <p>
-        Dla mojej Doma ❤️
+        Dla mojego słodziaka ❤️
     </p>
 
     <p>
@@ -1903,7 +1921,7 @@ function loveExplosion(){
     bigExplosion();
 
     openModal(
-        "Domcia, moja Doma, moje Słoneczko i moja Księżniczka... ❤️ Kocham Cię najbardziej na świecie."
+        "Domcia, moja Doma, moje kochanie... ❤️ Kocham Cię najbardziej na świecie."
     );
 
 }
@@ -1913,49 +1931,58 @@ function loveExplosion(){
    LOSOWE WIADOMOŚCI
 ========================= */
 
-const messages=[
-
-"Domcia, jesteś moją ulubioną osobą na całym świecie. ❤️",
-
-"Moje Słoneczko, Twój uśmiech potrafi poprawić mi każdy dzień. ☀️",
-
-"Doma, z Tobą nawet zwykły dzień jest wyjątkowy. 💕",
-
-"Księżniczko, gdybym miał wybierać jeszcze raz — wybrałbym Ciebie. 👑",
-
-"Domcia, chcę z Tobą stworzyć jeszcze milion wspomnień. ❤️",
-
-"Słoneczko, dziękuję Ci za każdą wspólną chwilę. ☀️",
-
-"Doma, moje serce wybrało Ciebie i nie zamierza zmieniać zdania. ❤️",
-
-"Księżniczko, jesteś kimś, kogo nigdy nie chcę stracić. 👑❤️",
-
-"Domcia, kocham Twoje serce, Twój uśmiech i całą Ciebie. 💖"
-
+const messages = [
+    "Domcia ❤️ jesteś najpiękniejszą osobą na całym świecie.",
+    "Kochanie ☀️ przy Tobie każdy dzień jest lepszy.",
+    "Doma ❤️ moje serce zawsze wybiera Ciebie.",
+    "Domi 👑 jesteś moim największym szczęściem.",
+    "Domcia 🥰 Twój uśmiech potrafi naprawić każdy mój dzień.",
+    "Słoneczko ❤️ kocham każdą chwilę spędzoną z Tobą.",
+    "Doma 💕 chcę tworzyć z Tobą milion kolejnych wspomnień.",
+    "Księżniczko 👑 jesteś moim domem.",
+    "Domcia ❤️ gdybym miał wybierać jeszcze raz, wybrałbym Ciebie.",
+    "Słoneczko ☀️ jesteś najlepszą rzeczą, jaka mnie spotkała.",
+    "Doma 💖 masz całe moje serce.",
+    "Księżniczko ❤️ będę Cię kochał dzisiaj, jutro i zawsze.",
+    "Słoneczko 💕 z Tobą nawet zwykły dzień jest wyjątkowy.",
+    "Doma ❤️ chcę być przy Tobie już zawsze."
 ];
 
-function randomMessage(){
+let usedMessages = [];
 
-    const message=
-    messages[
-        Math.floor(
-            Math.random()*messages.length
-        )
-    ];
+function showRandomMessage() {
 
-    document
-    .getElementById("messageBox")
-    .textContent=message;
-
-    for(let i=0;i<20;i++){
-
-        setTimeout(
-            createHeart,
-            i*50
-        );
-
+    // Jeżeli wszystkie wiadomości zostały użyte,
+    // zaczynamy losowanie od początku
+    if (usedMessages.length === messages.length) {
+        usedMessages = [];
     }
+
+    let randomIndex;
+
+    do {
+        randomIndex = Math.floor(
+            Math.random() * messages.length
+        );
+    } while (usedMessages.includes(randomIndex));
+
+    usedMessages.push(randomIndex);
+
+    const message =
+        document.getElementById("randomMessage");
+
+    message.style.opacity = "0";
+    message.style.transform = "scale(0.8)";
+
+    setTimeout(() => {
+
+        message.textContent =
+            messages[randomIndex];
+
+        message.style.opacity = "1";
+        message.style.transform = "scale(1)";
+
+    }, 200);
 
 }
 
@@ -2022,7 +2049,7 @@ document
 */
 
 const relationshipStart =
-new Date("2025-02-14T20:00:00");
+new Date("2025-10-18T20:00:00");
 
 
 function updateTime(){
