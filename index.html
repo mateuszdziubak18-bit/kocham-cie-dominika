@@ -974,6 +974,30 @@ footer{
     }
 
 }
+    #randomButton {
+    display: block;
+    margin: 20px auto 0;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 30px;
+    background: white;
+    color: #e91e63;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.random-message {
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: .3s;
+}
 </style>
 </head>
 
@@ -1439,14 +1463,13 @@ footer{
         💌 Małe wiadomości dla <span>Domii</span>
     </h2>
 
-    <div
-        class="message-box"
-        id="messageBox">
+    <div class="random-message" id="randomMessage">
+    Kliknij przycisk poniżej ❤️
+</div>
 
-        Kliknij przycisk na górze,
-        kochanie 👑❤️
-
-    </div>
+<button type="button" id="randomButton">
+    💌 Powiedz mi coś...
+</button>
 
 </section>
 
@@ -2106,7 +2129,34 @@ setInterval(
     updateTime,
     1000
 );
+    
+const domciaMessages = [
+    "Domcia ❤️ kocham Cię najbardziej na świecie.",
+    "Słoneczko ☀️ jesteś moim największym szczęściem.",
+    "Doma ❤️ moje serce wybrało właśnie Ciebie.",
+    "Księżniczko 👑 jesteś najważniejszą osobą w moim życiu.",
+    "Domcia 🥰 Twój uśmiech jest moją ulubioną rzeczą.",
+    "Słoneczko ❤️ z Tobą każdy dzień jest piękniejszy.",
+    "Doma 💕 chcę z Tobą przeżyć jeszcze milion pięknych chwil.",
+    "Księżniczko 👑 przy Tobie czuję się jak w domu.",
+    "Domcia ❤️ gdybym miał wybierać jeszcze raz, wybrałbym Ciebie.",
+    "Słoneczko ☀️ nie zamieniłbym Cię na nikogo.",
+    "Doma 💖 masz całe moje serce.",
+    "Księżniczko ❤️ będę Cię kochał dzisiaj, jutro i zawsze."
+];
 
+document.getElementById("randomButton").addEventListener("click", function () {
+
+    const box = document.getElementById("randomMessage");
+
+    const randomIndex = Math.floor(
+        Math.random() * domciaMessages.length
+    );
+
+    box.textContent = domciaMessages[randomIndex];
+
+});
+    
 </script>
 
 </body>
