@@ -2,416 +2,619 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>Kocham Cię, Domcia ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domcia ❤️</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    overflow-x: hidden;
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
+    overflow-x:hidden;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    background: linear-gradient(135deg, #ff4f81, #ff1744, #8e24aa);
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:white;
+    background:#100016;
 }
 
-/* TŁO */
+/* =========================
+   EKRAN STARTOWY
+========================= */
 
-.background {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
+.start-screen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(circle at center,#8e245f 0%,#28002d 45%,#08000d 100%);
+
+    transition:opacity 1s ease,visibility 1s ease;
 }
 
-.glow {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.12);
-    filter: blur(60px);
+.start-screen.hide{
+    opacity:0;
+    visibility:hidden;
 }
 
-.glow.one {
-    top: -100px;
-    left: -100px;
+.start-box{
+    width:90%;
+    max-width:430px;
+    text-align:center;
+    padding:45px 25px;
+
+    border-radius:35px;
+
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.2);
+
+    box-shadow:0 20px 80px rgba(0,0,0,.6);
 }
 
-.glow.two {
-    bottom: -100px;
-    right: -100px;
-    background: rgba(255,0,100,0.18);
+.start-heart{
+    font-size:90px;
+    animation:pulse 1.3s infinite;
 }
 
-/* GŁÓWNA KARTA */
-
-.container {
-    position: relative;
-    z-index: 5;
-
-    width: calc(100% - 30px);
-    max-width: 520px;
-
-    margin: 25px auto;
-
-    padding: 35px 20px;
-
-    text-align: center;
-
-    border-radius: 30px;
-
-    background: rgba(255,255,255,0.13);
-    border: 1px solid rgba(255,255,255,0.2);
-
-    box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+.start-box h1{
+    font-size:38px;
+    margin:15px 0;
 }
 
-/* SERCE */
-
-.heart-wrapper {
-    height: 105px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.start-box p{
+    font-size:18px;
+    opacity:.85;
+    line-height:1.5;
 }
 
-.heart {
-    font-size: 75px;
-    display: block;
+.start-button{
+    margin-top:20px;
+    padding:17px 30px;
 
-    animation: heartbeat 1.2s ease-in-out infinite;
+    border:0;
+    border-radius:40px;
+
+    background:white;
+    color:#e91e63;
+
+    font-size:18px;
+    font-weight:bold;
+
+    box-shadow:0 8px 30px rgba(255,255,255,.2);
 }
 
-@keyframes heartbeat {
-    0% {
-        transform: scale(1);
+/* =========================
+   TŁO
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:.45;
+}
+
+.orb1{
+    width:300px;
+    height:300px;
+    background:#ff176b;
+    top:-100px;
+    left:-100px;
+}
+
+.orb2{
+    width:350px;
+    height:350px;
+    background:#7b16ff;
+    right:-130px;
+    bottom:-100px;
+}
+
+.orb3{
+    width:220px;
+    height:220px;
+    background:#ff4f9a;
+    left:40%;
+    top:40%;
+}
+
+/* =========================
+   GWIAZDKI
+========================= */
+
+.stars{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:white;
+    opacity:.7;
+}
+
+/* =========================
+   GŁÓWNA KARTA
+========================= */
+
+.container{
+    position:relative;
+    z-index:5;
+
+    width:calc(100% - 30px);
+    max-width:600px;
+
+    margin:25px auto;
+    padding:40px 22px;
+
+    text-align:center;
+
+    border-radius:35px;
+
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 20px 80px rgba(0,0,0,.4),
+        inset 0 0 30px rgba(255,255,255,.03);
+}
+
+.heart-wrapper{
+    height:120px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.big-heart{
+    font-size:85px;
+    animation:pulse 1.2s infinite;
+    filter:drop-shadow(0 0 25px rgba(255,70,140,.8));
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.16)}
+}
+
+.small-title{
+    font-size:17px;
+    opacity:.75;
+    letter-spacing:2px;
+}
+
+h1{
+    margin:10px 0;
+
+    font-size:clamp(35px,10vw,58px);
+
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #ffc5db,
+        #fff
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    text-shadow:0 0 25px rgba(255,255,255,.15);
+}
+
+.nickname{
+    font-size:21px;
+    opacity:.9;
+    line-height:1.7;
+}
+
+/* =========================
+   LICZNIK
+========================= */
+
+.percent{
+    margin-top:25px;
+
+    font-size:80px;
+    font-weight:900;
+
+    text-shadow:0 0 35px rgba(255,255,255,.4);
+}
+
+.progress{
+    width:100%;
+    height:22px;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:30px;
+    overflow:hidden;
+
+    box-shadow:inset 0 2px 8px rgba(0,0,0,.3);
+}
+
+.progress-bar{
+    width:0;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #ff6fa5,
+        white,
+        #ff6fa5
+    );
+
+    border-radius:30px;
+
+    transition:width .05s linear;
+
+    box-shadow:0 0 20px #fff;
+}
+
+.status{
+    margin-top:13px;
+    opacity:.8;
+}
+
+.message{
+    margin-top:30px;
+
+    font-size:26px;
+    font-weight:bold;
+
+    opacity:0;
+    transform:scale(.8);
+
+    transition:1s ease;
+}
+
+.message.show{
+    opacity:1;
+    transform:scale(1);
+}
+
+/* =========================
+   PRZYCISKI
+========================= */
+
+.buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+
+    margin-top:28px;
+}
+
+button{
+    padding:16px 22px;
+
+    border:0;
+    border-radius:35px;
+
+    background:white;
+    color:#d81b60;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+/* =========================
+   SEKCJE
+========================= */
+
+.section{
+    position:relative;
+    z-index:5;
+
+    width:calc(100% - 30px);
+    max-width:950px;
+
+    margin:25px auto;
+    padding:32px 20px;
+
+    border-radius:32px;
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+
+.section h2{
+    text-align:center;
+    font-size:29px;
+    margin-top:0;
+}
+
+/* =========================
+   TEKSTY DLA DOMCI
+========================= */
+
+.love-text{
+    text-align:center;
+    font-size:20px;
+    line-height:1.8;
+}
+
+.highlight{
+    font-size:25px;
+    font-weight:bold;
+}
+
+/* =========================
+   POWODY
+========================= */
+
+.reasons{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.reason{
+    padding:20px 12px;
+    text-align:center;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.07);
+}
+
+.reason-icon{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.reason p{
+    opacity:.8;
+    line-height:1.5;
+}
+
+/* =========================
+   CZAS
+========================= */
+
+.together{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.time-box{
+    padding:20px 5px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+}
+
+.time-number{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.time-label{
+    font-size:11px;
+    opacity:.7;
+}
+
+/* =========================
+   GALERIA
+========================= */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.photo{
+    height:220px;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.08);
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:transform .5s ease;
+}
+
+.photo:active img{
+    transform:scale(1.06);
+}
+
+/* =========================
+   SEKRET
+========================= */
+
+.secret{
+    text-align:center;
+}
+
+.secret-text{
+    display:none;
+
+    margin-top:20px;
+    padding:25px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.08);
+
+    font-size:20px;
+    line-height:1.8;
+}
+
+.secret-text.show{
+    display:block;
+}
+
+/* =========================
+   SERDUSZKA
+========================= */
+
+.floating-heart{
+    position:fixed;
+    top:-50px;
+
+    z-index:100;
+
+    pointer-events:none;
+
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(0);
+        opacity:1;
     }
 
-    25% {
-        transform: scale(1.12);
-    }
-
-    40% {
-        transform: scale(1);
-    }
-
-    60% {
-        transform: scale(1.12);
-    }
-
-    100% {
-        transform: scale(1);
+    to{
+        transform:translateY(110vh);
+        opacity:0;
     }
 }
 
-h1 {
-    margin: 10px 0;
+/* =========================
+   MODAL
+========================= */
 
-    font-size: clamp(30px, 8vw, 44px);
+.modal{
+    position:fixed;
+    inset:0;
 
-    text-shadow: 0 3px 12px rgba(0,0,0,0.35);
+    z-index:5000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.7);
 }
 
-.subtitle {
-    margin-bottom: 25px;
-    opacity: 0.9;
+.modal.show{
+    display:flex;
 }
 
-/* LICZNIK */
+.modal-box{
+    width:100%;
+    max-width:450px;
 
-.percent {
-    font-size: 65px;
-    font-weight: bold;
+    padding:35px 25px;
 
-    margin: 10px 0;
+    text-align:center;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        135deg,
+        #ff4f81,
+        #8e24aa
+    );
+
+    box-shadow:0 20px 80px rgba(0,0,0,.6);
 }
 
-.progress {
-    width: 100%;
-    height: 20px;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    background: rgba(255,255,255,0.2);
+.modal-heart{
+    font-size:70px;
 }
 
-.progress-bar {
-    width: 0%;
-    height: 100%;
+/* =========================
+   STOPKA
+========================= */
 
-    border-radius: 20px;
+footer{
+    position:relative;
+    z-index:5;
 
-    background: white;
+    padding:40px 20px 70px;
 
-    transition: width 0.05s linear;
+    text-align:center;
+
+    opacity:.7;
 }
 
-.love-status {
-    margin-top: 12px;
-
-    font-size: 14px;
-
-    opacity: 0.8;
+footer .heart{
+    font-size:35px;
 }
 
-/* WIADOMOŚĆ */
+/* =========================
+   MOBILE
+========================= */
 
-.message {
-    margin-top: 25px;
+@media(max-width:500px){
 
-    font-size: 23px;
-    font-weight: bold;
-
-    opacity: 0;
-
-    transition: opacity 1s ease;
-}
-
-.message.show {
-    opacity: 1;
-}
-
-/* PRZYCISKI */
-
-.buttons {
-    display: flex;
-    flex-direction: column;
-
-    gap: 12px;
-
-    margin-top: 25px;
-}
-
-button {
-    border: none;
-
-    padding: 15px 20px;
-
-    border-radius: 30px;
-
-    background: white;
-    color: #e91e63;
-
-    font-size: 16px;
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-button:active {
-    transform: scale(0.97);
-}
-
-/* SEKCJE */
-
-.section {
-    position: relative;
-    z-index: 5;
-
-    width: calc(100% - 30px);
-    max-width: 900px;
-
-    margin: 25px auto;
-
-    padding: 30px 20px;
-
-    border-radius: 30px;
-
-    background: rgba(255,255,255,0.12);
-
-    border: 1px solid rgba(255,255,255,0.15);
-
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-}
-
-.section h2 {
-    margin-top: 0;
-
-    text-align: center;
-
-    font-size: 28px;
-}
-
-/* POWODY */
-
-.reasons {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 12px;
-}
-
-.reason {
-    padding: 18px 10px;
-
-    text-align: center;
-
-    border-radius: 20px;
-
-    background: rgba(255,255,255,0.1);
-}
-
-.reason-icon {
-    font-size: 32px;
-
-    margin-bottom: 8px;
-}
-
-/* WIADOMOŚĆ */
-
-.random-message {
-    min-height: 80px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* CZAS */
-
-.together {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 10px;
-}
-
-.time-box {
-    padding: 15px 5px;
-
-    text-align: center;
-
-    border-radius: 18px;
-
-    background: rgba(255,255,255,0.1);
-}
-
-.time-number {
-    font-size: 27px;
-    font-weight: bold;
-}
-
-.time-label {
-    font-size: 11px;
-    opacity: 0.7;
-}
-
-/* GALERIA */
-
-.gallery {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 10px;
-}
-
-.photo {
-    width: 100%;
-    height: 180px;
-
-    overflow: hidden;
-
-    border-radius: 18px;
-
-    background: rgba(255,255,255,0.1);
-}
-
-.photo img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-}
-
-/* SERDUSZKA */
-
-.floating-heart {
-    position: fixed;
-
-    top: -40px;
-
-    pointer-events: none;
-
-    z-index: 100;
-
-    animation: heartFall linear forwards;
-}
-
-@keyframes heartFall {
-
-    from {
-        transform: translateY(0);
-        opacity: 1;
+    .container{
+        padding:35px 17px;
     }
 
-    to {
-        transform: translateY(110vh);
-        opacity: 0;
+    .section{
+        padding:28px 16px;
     }
 
-}
-
-/* STOPKA */
-
-footer {
-    position: relative;
-
-    z-index: 5;
-
-    padding: 30px 20px 60px;
-
-    text-align: center;
-
-    opacity: 0.8;
-}
-
-/* MOBILE */
-
-@media(max-width:500px) {
-
-    .container {
-        margin-top: 15px;
+    .reasons{
+        grid-template-columns:1fr;
     }
 
-    .section {
-        margin-top: 20px;
+    .gallery{
+        grid-template-columns:1fr;
     }
 
-    .heart {
-        font-size: 65px;
+    .photo{
+        height:300px;
     }
 
-    .percent {
-        font-size: 55px;
+    .percent{
+        font-size:65px;
     }
 
 }
@@ -420,24 +623,95 @@ footer {
 
 <body>
 
-<div class="background">
-    <div class="glow one"></div>
-    <div class="glow two"></div>
+<!-- =========================
+     START
+========================= -->
+
+<div class="start-screen" id="startScreen">
+
+    <div class="start-box">
+
+        <div class="start-heart">
+            ❤️
+        </div>
+
+        <h1>
+            Hej, Domcia...
+        </h1>
+
+        <p>
+            Ta strona została zrobiona
+            specjalnie dla Ciebie,
+            moje Słoneczko. ☀️
+        </p>
+
+        <p>
+            Kliknij i wejdź, Księżniczko. ❤️
+        </p>
+
+        <button
+            class="start-button"
+            onclick="enterSite()">
+
+            ❤️ WEJDŹ, KSIĘŻNICZKO ❤️
+
+        </button>
+
+    </div>
+
 </div>
 
 
-<!-- GŁÓWNA SEKCJA -->
+<!-- =========================
+     TŁO
+========================= -->
+
+<div class="background">
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+</div>
+
+<div class="stars" id="stars"></div>
+
+
+<!-- =========================
+     AUDIO
+========================= -->
+
+<audio id="music" loop preload="auto">
+    <source src="noc.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- =========================
+     GŁÓWNA
+========================= -->
 
 <div class="container">
 
     <div class="heart-wrapper">
-        <div class="heart">❤️</div>
+
+        <div class="big-heart">
+            ❤️
+        </div>
+
     </div>
 
-    <h1>Kocham Cię, Domcia ❤️</h1>
+    <div class="small-title">
+        DLA MOJEJ
+    </div>
 
-    <div class="subtitle">
-        To jest tylko dla Ciebie...
+    <h1>
+        Domci
+    </h1>
+
+    <div class="nickname">
+        mojego Słoneczka ☀️<br>
+        mojej Księżniczki 👑<br>
+        mojej Doma ❤️
     </div>
 
     <div class="percent" id="percent">
@@ -445,29 +719,42 @@ footer {
     </div>
 
     <div class="progress">
-        <div class="progress-bar" id="progressBar"></div>
+
+        <div
+            class="progress-bar"
+            id="progressBar">
+        </div>
+
     </div>
 
-    <div class="love-status" id="loveStatus">
-        Ładowanie poziomu miłości...
+    <div
+        class="status"
+        id="status">
+
+        Ładowanie miłości...
+
     </div>
 
-    <div class="message" id="message">
-        Kocham Cię najbardziej na świecie ❤️
+    <div
+        class="message"
+        id="message">
+
+        Domcia, ta miłość nie ma końca. ❤️
+
     </div>
 
     <div class="buttons">
 
-        <button onclick="showMessage()">
-            💌 Kliknij tutaj
+        <button onclick="loveExplosion()">
+            💖 KOCHAM CIĘ, DOMA
         </button>
 
-        <button onclick="createManyHearts()">
-            ❤️ Kocham Cię
+        <button onclick="randomMessage()">
+            💌 WIADOMOŚĆ DLA KSIĘŻNICZKI
         </button>
 
-        <button onclick="openMusic()">
-            🎵 Noc – White 2115
+        <button onclick="toggleMusic()">
+            🎵 NOC – WHITE 2115
         </button>
 
     </div>
@@ -475,36 +762,161 @@ footer {
 </div>
 
 
-<!-- POWODY -->
+<!-- =========================
+     LIST
+========================= -->
 
 <div class="section">
 
-    <h2>💕 Dlaczego Cię kocham</h2>
+    <h2>
+        💌 Dla mojego Słoneczka
+    </h2>
+
+    <div class="love-text">
+
+        <p>
+            Domcia...
+        </p>
+
+        <p>
+            Chcę żebyś wiedziała,
+            że jesteś dla mnie kimś naprawdę wyjątkowym.
+        </p>
+
+        <p>
+            Moja Księżniczko 👑,
+            moje Słoneczko ☀️,
+            moja Doma ❤️
+        </p>
+
+        <p class="highlight">
+            Kocham Cię bardziej,
+            niż potrafię to opisać.
+        </p>
+
+        <p>
+            I chcę z Tobą przeżyć jeszcze
+            milion pięknych chwil.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     POWODY
+========================= -->
+
+<div class="section">
+
+    <h2>
+        👑 Dlaczego moja Księżniczka
+        jest wyjątkowa?
+    </h2>
 
     <div class="reasons">
 
         <div class="reason">
-            <div class="reason-icon">🥰</div>
-            <b>Twój uśmiech</b>
-            <p>Potrafi poprawić mi każdy dzień.</p>
+
+            <div class="reason-icon">
+                🥰
+            </div>
+
+            <b>
+                Twój uśmiech
+            </b>
+
+            <p>
+                Domcia, Twój uśmiech
+                potrafi zmienić mój cały dzień.
+            </p>
+
         </div>
 
         <div class="reason">
-            <div class="reason-icon">❤️</div>
-            <b>Twoje serce</b>
-            <p>Jesteś wyjątkową osobą.</p>
+
+            <div class="reason-icon">
+                ❤️
+            </div>
+
+            <b>
+                Twoje serce
+            </b>
+
+            <p>
+                Doma, masz serce,
+                które kocham najbardziej.
+            </p>
+
         </div>
 
         <div class="reason">
-            <div class="reason-icon">✨</div>
-            <b>Ty</b>
-            <p>Nie ma drugiej takiej jak Ty.</p>
+
+            <div class="reason-icon">
+                ☀️
+            </div>
+
+            <b>
+                Moje Słoneczko
+            </b>
+
+            <p>
+                Rozświetlasz nawet
+                najgorszy dzień.
+            </p>
+
         </div>
 
         <div class="reason">
-            <div class="reason-icon">🤍</div>
-            <b>Przy Tobie</b>
-            <p>Mogę być sobą.</p>
+
+            <div class="reason-icon">
+                👑
+            </div>
+
+            <b>
+                Moja Księżniczka
+            </b>
+
+            <p>
+                Dla mnie zawsze będziesz
+                kimś wyjątkowym.
+            </p>
+
+        </div>
+
+        <div class="reason">
+
+            <div class="reason-icon">
+                💕
+            </div>
+
+            <b>
+                Nasze chwile
+            </b>
+
+            <p>
+                Każda chwila z Tobą
+                jest dla mnie ważna.
+            </p>
+
+        </div>
+
+        <div class="reason">
+
+            <div class="reason-icon">
+                💍
+            </div>
+
+            <b>
+                My
+            </b>
+
+            <p>
+                Bo najbardziej kocham
+                właśnie nas.
+            </p>
+
         </div>
 
     </div>
@@ -512,45 +924,100 @@ footer {
 </div>
 
 
-<!-- WIADOMOŚĆ -->
+<!-- =========================
+     WIADOMOŚCI
+========================= -->
 
 <div class="section">
 
-    <h2>💌 Wiadomość dla Ciebie</h2>
+    <h2>
+        💌 Wiadomość dla Domci
+    </h2>
 
-    <div class="random-message" id="randomMessage">
-        Kliknij przycisk powyżej ❤️
+    <div
+        id="randomMessage"
+        class="love-text">
+
+        Kliknij przycisk na górze,
+        Księżniczko ❤️
+
     </div>
 
 </div>
 
 
-<!-- CZAS -->
+<!-- =========================
+     CZAS
+========================= -->
 
 <div class="section">
 
-    <h2>⏳ Nasz czas</h2>
+    <h2>
+        ⏳ Nasza wspólna historia
+    </h2>
+
+    <p class="love-text">
+        Każda sekunda z Tobą
+        jest dla mnie ważna,
+        Słoneczko. ☀️
+    </p>
 
     <div class="together">
 
         <div class="time-box">
-            <div class="time-number" id="days">0</div>
-            <div class="time-label">DNI</div>
+
+            <div
+                class="time-number"
+                id="days">
+                0
+            </div>
+
+            <div class="time-label">
+                DNI
+            </div>
+
         </div>
 
         <div class="time-box">
-            <div class="time-number" id="hours">0</div>
-            <div class="time-label">GODZIN</div>
+
+            <div
+                class="time-number"
+                id="hours">
+                0
+            </div>
+
+            <div class="time-label">
+                GODZIN
+            </div>
+
         </div>
 
         <div class="time-box">
-            <div class="time-number" id="minutes">0</div>
-            <div class="time-label">MINUT</div>
+
+            <div
+                class="time-number"
+                id="minutes">
+                0
+            </div>
+
+            <div class="time-label">
+                MINUT
+            </div>
+
         </div>
 
         <div class="time-box">
-            <div class="time-number" id="seconds">0</div>
-            <div class="time-label">SEKUND</div>
+
+            <div
+                class="time-number"
+                id="seconds">
+                0
+            </div>
+
+            <div class="time-label">
+                SEKUND
+            </div>
+
         </div>
 
     </div>
@@ -558,29 +1025,129 @@ footer {
 </div>
 
 
-<!-- ZDJĘCIA -->
+<!-- =========================
+     GALERIA
+========================= -->
 
 <div class="section">
 
-    <h2>📸 Nasze wspomnienia</h2>
+    <h2>
+        📸 Wspomnienia Domci i Mateusza
+    </h2>
 
     <div class="gallery">
 
         <div class="photo">
-            <img src="zdjecie1.jpg" alt="❤️">
+            <img
+                src="zdjecie1.jpg"
+                alt="Domcia ❤️">
         </div>
 
         <div class="photo">
-            <img src="zdjecie2.jpg" alt="❤️">
+            <img
+                src="zdjecie2.jpg"
+                alt="Słoneczko ❤️">
         </div>
 
         <div class="photo">
-            <img src="zdjecie3.jpg" alt="❤️">
+            <img
+                src="zdjecie3.jpg"
+                alt="Doma ❤️">
         </div>
 
         <div class="photo">
-            <img src="zdjecie4.jpg" alt="❤️">
+            <img
+                src="zdjecie4.jpg"
+                alt="Księżniczka ❤️">
         </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SEKRET
+========================= -->
+
+<div class="section">
+
+    <h2>
+        🔐 Sekret dla Księżniczki
+    </h2>
+
+    <div style="text-align:center">
+
+        <button onclick="secret()">
+            💝 Otwórz, Domcia
+        </button>
+
+    </div>
+
+    <div
+        class="secret-text"
+        id="secretText">
+
+        Domcia... ❤️
+
+        <br><br>
+
+        Moje Słoneczko,
+        moja Doma,
+        moja Księżniczko...
+
+        <br><br>
+
+        Gdybym miał jeszcze raz
+        wybierać osobę,
+        z którą chcę przeżyć
+        wszystkie piękne chwile...
+
+        <br><br>
+
+        <strong>
+            Wybrałbym Ciebie.
+        </strong>
+
+        <br><br>
+
+        Bez zastanowienia.
+
+        <br><br>
+
+        Kocham Cię. ❤️
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-heart">
+            ❤️
+        </div>
+
+        <h2>
+            Domcia...
+        </h2>
+
+        <p
+            id="modalText"
+            style="font-size:21px;line-height:1.7">
+        </p>
+
+        <button onclick="closeModal()">
+            ❤️ Zamknij
+        </button>
 
     </div>
 
@@ -589,88 +1156,171 @@ footer {
 
 <footer>
 
-    ❤️
+    <div class="heart">
+        ❤️
+    </div>
 
     <p>
-        Zrobione specjalnie dla Domci.
+        Zrobione specjalnie dla
+        mojej Domci.
     </p>
 
     <p>
-        Kocham Cię najbardziej na świecie ❤️
+        Dla mojego Słoneczka ☀️
     </p>
+
+    <p>
+        Dla mojej Doma ❤️
+    </p>
+
+    <p>
+        Dla mojej Księżniczki 👑
+    </p>
+
+    <strong>
+        Kocham Cię. ❤️
+    </strong>
 
 </footer>
 
 
 <script>
 
-/* LICZNIK 0 → 100 */
+/* =========================
+   GWIAZDKI
+========================= */
 
-let number = 0;
+const stars =
+    document.getElementById("stars");
+
+for(let i=0;i<90;i++){
+
+    const star =
+        document.createElement("div");
+
+    star.className="star";
+
+    star.style.left =
+        Math.random()*100+"vw";
+
+    star.style.top =
+        Math.random()*100+"vh";
+
+    star.style.opacity =
+        .3 + Math.random()*.7;
+
+    stars.appendChild(star);
+}
+
+
+/* =========================
+   MUZYKA
+========================= */
+
+const music =
+    document.getElementById("music");
+
+function enterSite(){
+
+    music.volume=.55;
+
+    music.play().catch(()=>{});
+
+    document
+        .getElementById("startScreen")
+        .classList.add("hide");
+
+}
+
+function toggleMusic(){
+
+    if(music.paused){
+
+        music.play().catch(()=>{});
+
+    }else{
+
+        music.pause();
+
+    }
+
+}
+
+
+/* =========================
+   LICZNIK MIŁOŚCI
+========================= */
+
+let number=0;
 
 const percent =
     document.getElementById("percent");
 
-const bar =
+const progress =
     document.getElementById("progressBar");
 
 const status =
-    document.getElementById("loveStatus");
+    document.getElementById("status");
 
 const message =
     document.getElementById("message");
 
-const counter =
-    setInterval(function() {
+const loveCounter =
+setInterval(()=>{
 
-        number++;
+    number++;
 
-        percent.textContent =
-            number + "%";
+    percent.textContent =
+        number+"%";
 
-        bar.style.width =
-            number + "%";
+    progress.style.width =
+        number+"%";
 
-        if(number < 30) {
+    if(number<25){
 
-            status.textContent =
-                "Dopiero zaczynamy... 💕";
+        status.textContent =
+            "Domcia, dopiero zaczynamy... ❤️";
 
-        } else if(number < 60) {
+    }else if(number<50){
 
-            status.textContent =
-                "Coraz więcej miłości... 🥰";
+        status.textContent =
+            "Słoneczko, kocham Cię coraz bardziej... ☀️";
 
-        } else if(number < 90) {
+    }else if(number<75){
 
-            status.textContent =
-                "Prawie 100%! ❤️";
+        status.textContent =
+            "Doma, już prawie... 💕";
 
-        } else {
+    }else if(number<100){
 
-            status.textContent =
-                "Ta miłość nie ma końca... 💖";
+        status.textContent =
+            "Księżniczko, prawie nieskończoność... 👑";
 
-        }
+    }
 
-        if(number >= 100) {
+    if(number>=100){
 
-            clearInterval(counter);
+        clearInterval(loveCounter);
 
-            percent.textContent = "∞";
+        percent.textContent="∞";
 
-            message.classList.add("show");
+        status.textContent =
+            "Moja miłość do Ciebie nie ma końca. ❤️";
 
-            createManyHearts();
+        message.classList.add("show");
 
-        }
+        loveExplosion();
 
-    },45);
+    }
+
+},45);
 
 
-/* SERDUSZKO */
+/* =========================
+   SERDUSZKA
+========================= */
 
-function createHeart() {
+function createHeart(){
 
     const heart =
         document.createElement("div");
@@ -678,158 +1328,218 @@ function createHeart() {
     heart.className =
         "floating-heart";
 
+    const list=[
+        "❤️",
+        "💕",
+        "💗",
+        "💖",
+        "💘",
+        "💝"
+    ];
+
     heart.textContent =
-        ["❤️","💕","💗","💖","💘"]
-        [Math.floor(Math.random() * 5)];
+        list[
+            Math.floor(
+                Math.random()*list.length
+            )
+        ];
 
     heart.style.left =
-        Math.random() * 95 + "vw";
+        Math.random()*95+"vw";
 
     heart.style.fontSize =
-        (15 + Math.random() * 25) + "px";
+        15+Math.random()*25+"px";
 
     heart.style.animationDuration =
-        (3 + Math.random() * 3) + "s";
+        3+Math.random()*4+"s";
 
     document.body.appendChild(heart);
 
-    setTimeout(function() {
+    setTimeout(()=>{
         heart.remove();
-    },7000);
+    },7500);
+
 }
 
-
-/* SERDUSZKA W TLE */
-
-setInterval(createHeart,700);
+setInterval(createHeart,800);
 
 
-/* DUŻO SERDUSZEK */
+/* =========================
+   EKSPLOZJA
+========================= */
 
-function createManyHearts() {
+function loveExplosion(){
 
-    for(let i = 0; i < 35; i++) {
+    for(let i=0;i<50;i++){
 
         setTimeout(
             createHeart,
-            i * 70
+            i*60
         );
 
     }
 
-}
-
-
-/* WIADOMOŚĆ */
-
-const messages = [
-
-    "Jesteś moją ulubioną osobą na całym świecie. ❤️",
-
-    "Twój uśmiech potrafi poprawić mi każdy dzień. 🥰",
-
-    "Z Tobą każdy dzień jest lepszy. 💕",
-
-    "Nie potrzebuję idealnego życia. Wystarczy mi życie z Tobą. ❤️",
-
-    "Chcę tworzyć z Tobą jeszcze milion wspomnień. 💖",
-
-    "Jesteś moim szczęściem. ❤️"
-
-];
-
-
-function showMessage() {
-
-    const random =
-        messages[
-            Math.floor(
-                Math.random() *
-                messages.length
-            )
-        ];
-
-    document.getElementById(
-        "randomMessage"
-    ).textContent = random;
-
-    createManyHearts();
-
-}
-
-
-/* MUZYKA */
-
-function openMusic() {
-
-    window.open(
-        "https://www.youtube.com/results?search_query=White+2115+Noc",
-        "_blank"
+    openModal(
+        "Domcia, moja Księżniczko 👑 — kocham Cię najbardziej na świecie. ❤️"
     );
 
 }
 
 
-/* LICZNIK CZASU */
+/* =========================
+   LOSOWE WIADOMOŚCI
+========================= */
+
+const messages=[
+
+    "Domcia, jesteś moją ulubioną osobą na całym świecie. ❤️",
+
+    "Słoneczko, dziękuję Ci za każdą wspólną chwilę. ☀️",
+
+    "Doma, Twój uśmiech jest jedną z moich ulubionych rzeczy. 🥰",
+
+    "Księżniczko, chcę z Tobą stworzyć jeszcze milion wspomnień. 👑",
+
+    "Domcia, przy Tobie zwykłe dni stają się wyjątkowe. 💕",
+
+    "Moje Słoneczko, jesteś dla mnie naprawdę wyjątkowa. ❤️",
+
+    "Doma, gdybym miał wybierać jeszcze raz — znowu wybrałbym Ciebie. 💖",
+
+    "Księżniczko, moje serce zdecydowanie wybrało Ciebie. 👑❤️"
+
+];
+
+function randomMessage(){
+
+    const text =
+        messages[
+            Math.floor(
+                Math.random()*messages.length
+            )
+        ];
+
+    document
+        .getElementById("randomMessage")
+        .textContent=text;
+
+    for(let i=0;i<15;i++){
+
+        setTimeout(
+            createHeart,
+            i*70
+        );
+
+    }
+
+}
+
+
+/* =========================
+   SEKRET
+========================= */
+
+function secret(){
+
+    document
+        .getElementById("secretText")
+        .classList.toggle("show");
+
+    loveExplosion();
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal(text){
+
+    document
+        .getElementById("modalText")
+        .textContent=text;
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+}
+
+function closeModal(){
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   CZAS RAZEM
+========================= */
+
+/*
+   TUTAJ WPISZ PRAWDZIWĄ DATĘ.
+   Przykład:
+   14 lutego 2025 o 20:00
+*/
 
 const startDate =
     new Date("2025-02-14T20:00:00");
 
-
-function updateTime() {
+function updateTime(){
 
     const now =
         new Date();
 
     let difference =
-        now - startDate;
+        now-startDate;
 
-    if(difference < 0) {
-        difference = 0;
-    }
+    if(difference<0)
+        difference=0;
 
-    const totalSeconds =
+    const seconds =
         Math.floor(
-            difference / 1000
+            difference/1000
         );
 
     const days =
         Math.floor(
-            totalSeconds / 86400
+            seconds/86400
         );
 
     const hours =
         Math.floor(
-            (totalSeconds % 86400) / 3600
+            (seconds%86400)/3600
         );
 
     const minutes =
         Math.floor(
-            (totalSeconds % 3600) / 60
+            (seconds%3600)/60
         );
 
-    const seconds =
-        totalSeconds % 60;
+    const secs =
+        seconds%60;
 
 
-    document.getElementById(
-        "days"
-    ).textContent = days;
+    document
+        .getElementById("days")
+        .textContent=days;
 
-    document.getElementById(
-        "hours"
-    ).textContent = hours;
+    document
+        .getElementById("hours")
+        .textContent=hours;
 
-    document.getElementById(
-        "minutes"
-    ).textContent = minutes;
+    document
+        .getElementById("minutes")
+        .textContent=minutes;
 
-    document.getElementById(
-        "seconds"
-    ).textContent = seconds;
+    document
+        .getElementById("seconds")
+        .textContent=secs;
 
 }
-
 
 updateTime();
 
